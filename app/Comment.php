@@ -11,8 +11,12 @@ class Comment extends Model
         ['id' => 2, 'name'=>'Fulano 2', 'message' => 'teste teste'],
         ['id' => 3, 'name'=>'Fulano 3', 'message' => 'teste teste'],
         ['id' => 4, 'name'=>'Fulano 4', 'message' => 'teste teste'],
-        ['id' => 5, 'name'=>'Fulano 5', 'message' => 'teste teste'],
-        ['id' => 6, 'name'=>'Fulano 6', 'message' => 'teste teste'],
+        ['id' => 5, 'name'=>'Fulano 5', 'message' => 'Vocês merecem tudo que é maravilhoso, parabéns ao casal!'],
+        ['id' => 5, 'name'=>'Fulano 5', 'message' => 'Vocês merecem tudo que é maravilhoso, parabéns ao casal!'],
+        ['id' => 5, 'name'=>'Fulano 5', 'message' => 'Vocês merecem tudo que é maravilhoso, parabéns ao casal!'],
+        ['id' => 5, 'name'=>'Fulano 5', 'message' => 'Vocês merecem tudo que é maravilhoso, parabéns ao casal!'],
+        ['id' => 5, 'name'=>'Fulano 5', 'message' => 'Vocês merecem tudo que é maravilhoso, parabéns ao casal!'],
+        ['id' => 6, 'name'=>'Fulano 6', 'message' => 'Adorei cada momento da festa e da carimonia, vocês merecem!'],
     ];
 
     public function getAllComments() {
