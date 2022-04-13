@@ -9,7 +9,7 @@ class Register extends Model
     public $dataMokados = ['total' => 20];
 
     public function getAllRegister() {
-        return $this->dataMokados;
+        return  ['total' => Register::all()] ;
     }
 
     public function storeRegister($request) {

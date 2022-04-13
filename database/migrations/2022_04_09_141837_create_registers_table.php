@@ -15,6 +15,9 @@ class CreateRegistersTable extends Migration
     {
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
+            $table->string('ip');
+            $table->string('session');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
