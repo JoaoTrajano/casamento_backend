@@ -12,7 +12,7 @@ class Register extends Model
         return  ['total' => Register::all()] ;
     }
 
-    public function storeRegister($request) {
-        var_dump($request);
+    public function storeRegister($request): string {
+        return json_encode($request);
     }
 }

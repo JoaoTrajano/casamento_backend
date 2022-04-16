@@ -22,6 +22,15 @@ class CommentController extends Controller
 
     public function store(Request $request) {
         $comment = new Comment();
-        return $comment->storeComment($request->all());
+        $arrayValues = $request->all();
+
+        foreach ($arrayValues as $key => $value) {
+            $arrayValues[$key] = $this->filter($value);
+        }
+        return $comment->storeComment($arrayValues);
+    }
+
+    public function filter($value): string {
+        return filter_var($value, FILTER_SANITIZE_STRING);
     }
 }
