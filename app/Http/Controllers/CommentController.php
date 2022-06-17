@@ -5,23 +5,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
-use App\Exception;
 
 
 class CommentController extends Controller
 {
 
+    /**
+     * Retorna todos os comentários.
+     *
+     * @return void
+     */
     public function index() {
         return Comment::all();
     }
 
-    public function getLastsComments()
+    /**
+     * Retorna os dois últimos comentários.
+     *
+     * @return array
+     */
+    public function getLastsComments(): array
     {
-        $comment = new Comment();
-        return $comment->lastComments();
+        $lastComments = Comment::all()->toArray();
+        return $this->handleComments($lastComments);
     }
 
-    public function store(Request $request) {
+    /**
+     * Cria um nono comentário.
+     * @param Request $request
+     * @return array
+     */
+    public function store(Request $request): array {
         $arrayValues = $request->all();
 
         foreach ($arrayValues as $key => $value) {
@@ -34,10 +48,30 @@ class CommentController extends Controller
         }
 
         return ['status' => 'error', 'message' => 'Houve um erro. Tente novamente.'];
-
     }
 
-    public function filter($value) {
+    /**
+     * Faz o tratamento de strings para evitar códigos maliciosos.
+     * @param string $value
+     * @return string
+     */
+    public function filter(string $value): string {
         return filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
+    /**
+     * Retorna os dois últimos comentários.
+     * @param array $lastComments
+     * @return array
+     */
+    public function handleComments(array $lastComments): array {
+        $totalArray = count($lastComments);
+        $lastIndex = $totalArray - 1;
+        $penultimateIndex = $totalArray - 2;
+
+        return array(
+            $lastComments[$lastIndex],
+            $lastComments[$penultimateIndex]
+        );
     }
 }

@@ -12,7 +12,7 @@ class RegisterController extends Controller
      *
      * @return int
      */
-    public function index()
+    public function index(): int
     {
         return count(Register::all());
     }
