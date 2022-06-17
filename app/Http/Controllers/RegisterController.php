@@ -7,11 +7,22 @@ use App\Register;
 
 class RegisterController extends Controller
 {
+    /**
+     * Retorna o total de visitas no site.
+     *
+     * @return int
+     */
     public function index()
     {
         return count(Register::all());
     }
 
+    /**
+     * Faz o registro da visita no site.
+     *
+     * @param Request $request
+     * @return object
+     */
     public function store(Request $request)
     {
         $arrayRequest = $request->all();

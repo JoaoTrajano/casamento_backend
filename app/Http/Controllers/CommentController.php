@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Register;
+
 use Illuminate\Http\Request;
 use App\Comment;
+use App\Exception;
+
 
 class CommentController extends Controller
 {
 
     public function index() {
-        $comment = new Comment();
-        return $comment->getAllComments();
+        return Comment::all();
     }
 
     public function getLastsComments()
@@ -21,18 +22,22 @@ class CommentController extends Controller
     }
 
     public function store(Request $request) {
-        $comment = new Comment();
         $arrayValues = $request->all();
 
+        foreach ($arrayValues as $key => $value) {
+            $arrayValues[$key] = $this->filter($value);
+        }
 
-        // foreach ($arrayValues as $key => $value) {
-        //     $arrayValues[$key] = $this->filter($value);
-        // }
+        $result = Comment::create($arrayValues);
+        if($result) {
+            return ['status' => 'success', 'message' => 'Agradecemos o carinho!'];
+        }
 
-        return $comment->storeComment($arrayValues);
+        return ['status' => 'error', 'message' => 'Houve um erro. Tente novamente.'];
+
     }
 
-    public function filter($value): string {
-        return filter_var($value, FILTER_SANITIZE_STRING);
+    public function filter($value) {
+        return filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
     }
 }
