@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
  */
 Route::prefix('register')->group(function () {
     Route::get('/all_registers', 'RegisterController@index');
-    Route::post('/store_register', 'RegisterController@store');
+    Route::get('/store_register', 'RegisterController@store');
 });
 
 /**

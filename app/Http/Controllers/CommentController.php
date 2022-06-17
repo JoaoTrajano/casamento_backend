@@ -24,9 +24,11 @@ class CommentController extends Controller
         $comment = new Comment();
         $arrayValues = $request->all();
 
-        foreach ($arrayValues as $key => $value) {
-            $arrayValues[$key] = $this->filter($value);
-        }
+
+        // foreach ($arrayValues as $key => $value) {
+        //     $arrayValues[$key] = $this->filter($value);
+        // }
+
         return $comment->storeComment($arrayValues);
     }
 

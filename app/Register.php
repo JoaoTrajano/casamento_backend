@@ -8,11 +8,10 @@ class Register extends Model
 {
     public $dataMokados = ['total' => 20];
 
+    protected $fillable = ['ip', 'session', 'date'];
+
     public function getAllRegister() {
-        return  ['total' => Register::all()] ;
+       return $this->dataMokados;
     }
 
-    public function storeRegister($request): string {
-        return json_encode($request);
-    }
 }

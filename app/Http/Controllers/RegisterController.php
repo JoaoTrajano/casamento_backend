@@ -7,13 +7,28 @@ use App\Register;
 
 class RegisterController extends Controller
 {
-    public function index() {
-        $register = new Register();
-        return json_encode($register->getAllRegister());
+    public function index()
+    {
+        return count(Register::all());
     }
 
-    public function store(Request $request) {
-        $register = new Register();
-        $register->storeRegister($request->all());
+    public function store(Request $request)
+    {
+        $arrayRequest = $request->all();
+
+        $arrayDataPersist = array();
+
+        $arrayDataPersist['session'] = "";
+
+        if($arrayRequest['visited']) {
+            $arrayDataPersist['session'] = hash('ripemd160', (string)rand(5, 15));
+        }
+
+        $arrayDataPersist['ip'] = $arrayRequest['ip'];
+        $arrayDataPersist['date'] = now();
+
+        $result = Register::create($arrayDataPersist);
+
+        return $result;
     }
 }
