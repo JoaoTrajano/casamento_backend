@@ -1,19 +1,17 @@
 {
     "version": 2,
-    "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.4.0" }
-    },
+    "builds": [
+        { "src": "/api/index.php", "use": "vercel-php@0.3.1" },
+        { "src": "/public/**", "use": "@vercel/static" }
+    ],
     "routes": [
         {
+            "src": "/(css|js)/(.*)",
+            "dest": "public/$1/$2"
+        },
+        {
             "src": "/(.*)",
-            "methods": ["GET", "POST", "OPTIONS"],
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-                "Access-Control-Allow-Credentials": "true"
-              },
-            "dest": "/api/index.php",
-            "continue": true
+            "dest": "/api/index.php"
         }
     ],
     "env": {
