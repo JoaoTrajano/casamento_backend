@@ -16,7 +16,7 @@ class CommentController extends Controller
      * @return void
      */
     public function index() {
-        $comments = Comment::all()->toArray();
+        $comments = Comment::where('approved', true)->first()->toArray();
         return count($comments) > 0 ? $comments : [];
     }
 
