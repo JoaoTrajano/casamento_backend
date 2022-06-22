@@ -14,9 +14,11 @@ Route::prefix('register')->group(function () {
  * Rotas dos comentários
  */
 Route::prefix('comments')->group(function () {
-    Route::get('/all_comments', 'CommentController@index');
+    // Route::get('/all_comments', 'CommentController@index');
     Route::get('/get_lasts_comments', 'CommentController@getLastsComments');
     Route::post('/store_comments', 'CommentController@store');
 });
 
+
+Route::get('/all_comments', 'CommentController@index');
 
