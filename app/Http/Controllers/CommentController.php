@@ -16,9 +16,7 @@ class CommentController extends Controller
      * @return void
      */
     public function index() {
-        return [
-            '1' => 'teste'
-        ];
+        return "teste";
     }
 
     /**
