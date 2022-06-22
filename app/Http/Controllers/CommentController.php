@@ -27,7 +27,7 @@ class CommentController extends Controller
      */
     public function getLastsComments()
     {
-        $lastComments = Comment::all()->toArray();
+        $lastComments = Comment::where('approved', true)->first()->toArray();
         return count($lastComments) > 0 ? $this->handleComments($lastComments) : [];
     }
 
