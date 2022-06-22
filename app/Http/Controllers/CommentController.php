@@ -61,7 +61,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Aprova um comentário.
+     * Aprova um comentário ou deleta o comentário
      *
      * @param Request $request
      * @return array
@@ -69,11 +69,18 @@ class CommentController extends Controller
     public function approveCommenter(Request $request) {
 
         $idCommenter = $request->all()['id'];
+        $deleteCommenter = $request->all()['delete'];
 
         if($idCommenter) {
+
             $comment = Comment::find($idCommenter);
 
             if($comment) {
+                if($deleteCommenter){
+                    $comment->delete();
+                    return ['status' => 'ok'];
+                }
+
                 $comment->approved = true;
                 if($comment->save()) return ['status' => 'ok'];
             }
