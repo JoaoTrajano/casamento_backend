@@ -52,6 +52,37 @@ class CommentController extends Controller
     }
 
     /**
+     * Retorna somente os comentários que não foram aprovados
+     *
+     * @return array
+     */
+    public function getCommentsToApprove() {
+        return Comment::where('approved', false)->first() ?? [];
+    }
+
+    /**
+     * Aprova um comentário.
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function approveCommenter(Request $request) {
+
+        $idCommenter = $request->all()['id'];
+
+        if($idCommenter) {
+            $comment = Comment::find($idCommenter);
+
+            if($comment) {
+                $comment->approved = true;
+                if($comment->save()) return ['status' => 'ok'];
+            }
+        }
+
+        return ['status' => 'error'];
+    }
+
+    /**
      * Faz o tratamento de strings para evitar códigos maliciosos.
      * @param string $value
      * @return string
