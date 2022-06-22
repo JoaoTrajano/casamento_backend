@@ -16,7 +16,7 @@ class CommentController extends Controller
      * @return void
      */
     public function index() {
-        $comments = Comment::where('approved', true)->first()->toArray();
+        $comments = Comment::where('approved', true)->get()->toArray();
         return count($comments) > 0 ? $comments : [];
     }
 
@@ -27,7 +27,7 @@ class CommentController extends Controller
      */
     public function getLastsComments()
     {
-        $lastComments = Comment::where('approved', true)->first()->toArray();
+        $lastComments = Comment::where('approved', true)->get()->toArray();
         return count($lastComments) > 0 ? $this->handleComments($lastComments) : [];
     }
 
@@ -57,7 +57,7 @@ class CommentController extends Controller
      * @return array
      */
     public function getCommentsToApprove() {
-        return Comment::where('approved', false)->first() ?? [];
+        return Comment::where('approved', false)->get() ?? [];
     }
 
     /**
