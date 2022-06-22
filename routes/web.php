@@ -3,4 +3,4 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/clear/route', 'ConfigController@clearRoute');
+Route::get('/', 'ConfigController@clearRoute');

@@ -25,7 +25,7 @@ class CommentController extends Controller
      *
      * @return array
      */
-    public function getLastsComments(): array
+    public function getLastsComments()
     {
         $lastComments = Comment::all()->toArray();
         return count($lastComments) > 0 ? $this->handleComments($lastComments) : [];
@@ -36,7 +36,7 @@ class CommentController extends Controller
      * @param Request $request
      * @return array
      */
-    public function store(Request $request): array {
+    public function store(Request $request) {
         $arrayValues = $request->all();
 
         foreach ($arrayValues as $key => $value) {
@@ -65,7 +65,7 @@ class CommentController extends Controller
      * @param array $lastComments
      * @return array
      */
-    public function handleComments(array $lastComments): array {
+    public function handleComments(array $lastComments) {
         $totalArray = count($lastComments);
         $lastIndex = $totalArray - 1;
         $penultimateIndex = $totalArray - 2;
