@@ -16,7 +16,9 @@ class CommentController extends Controller
      * @return void
      */
     public function index() {
-        return Comment::all();
+        return [
+            '1' => 'teste'
+        ];
     }
 
     /**
